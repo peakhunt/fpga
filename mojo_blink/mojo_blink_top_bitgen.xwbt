@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/hawk/sandbox/fpga/mojo_blink/mojo_blink_top.ncd
+OUTFILE=/home/hawk/sandbox/fpga/mojo_blink/mojo_blink_top.bit
+FAMILY=Spartan6
+PART=xc6slx9-2tqg144
+WORKINGDIR=/home/hawk/sandbox/fpga/mojo_blink
+LICENSE=WebPack
+USER_INFO=__0_0_0

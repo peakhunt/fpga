@@ -1,0 +1,3 @@
+work	"clock_divider.vhd"
+work	"mojo_blink_top.vhd"
+work	"spi_slave.vhd"

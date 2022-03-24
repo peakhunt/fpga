@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/hawk/sandbox/fpga/mojo_blink/mojo_blink_top_testbench_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="mojo_blink_top_testbench" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/mojo_blink_top_testbench/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/rst_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/mosi" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">mosi</obj_property>
+      <obj_property name="ObjectShortName">mosi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/cs_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cs_n</obj_property>
+      <obj_property name="ObjectShortName">cs_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/leds" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">leds[7:0]</obj_property>
+      <obj_property name="ObjectShortName">leds[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/td1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">td1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">td1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/td2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">td2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">td2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/t" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">t</obj_property>
+      <obj_property name="ObjectShortName">t</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/s" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">s</obj_property>
+      <obj_property name="ObjectShortName">s</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/c" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">c</obj_property>
+      <obj_property name="ObjectShortName">c</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/uut/spi_dready" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">spi_dready</obj_property>
+      <obj_property name="ObjectShortName">spi_dready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/sclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sclk</obj_property>
+      <obj_property name="ObjectShortName">sclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/uut/sslave1/s_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/miso" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">miso</obj_property>
+      <obj_property name="ObjectShortName">miso</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/uut/sslave1/dt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_blink_top_testbench/uut/sslave1/dr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dr[7:0]</obj_property>
+   </wvobject>
+</wave_config>

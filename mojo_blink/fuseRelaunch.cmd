@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/hawk/sandbox/fpga/mojo_blink/mojo_blink_top_testbench_isim_beh.exe" -prj "/home/hawk/sandbox/fpga/mojo_blink/mojo_blink_top_testbench_beh.prj" "work.mojo_blink_top_testbench" 

@@ -75,7 +75,7 @@ signal reg_sel, reg_sel_next: std_logic_vector(1 downto 0);
 signal dready_trigger: std_logic;
 
 begin
-  --dready_trigger <= dready;
+  dready_trigger <= dready;
 
   ------------------------------------------------------------------
   -- state register
@@ -88,12 +88,12 @@ begin
       led_reg <= (others => '0');
       bad_reg <= "10001000";
       def_reg <= "11111111";
-      dready_trigger <= '0';
+      --dready_trigger <= '0';
     elsif rising_edge(clk) then
       state_reg <= state_next;
       reg_sel <= reg_sel_next;
       led_reg <= led_reg_next;
-      dready_trigger <= dready;
+      --dready_trigger <= dready;
     end if;
   end process;
 

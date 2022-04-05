@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/hawk/sandbox/fpga/mojo_i2c/mojo_top_testbench_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="mojo_top_testbench" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="24" />
+   <wvobject fp_name="/mojo_top_testbench/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/rst_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/scl" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">scl</obj_property>
+      <obj_property name="ObjectShortName">scl</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/sda" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sda</obj_property>
+      <obj_property name="ObjectShortName">sda</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/read_back" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">read_back</obj_property>
+      <obj_property name="ObjectShortName">read_back</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/drv_low" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">drv_low</obj_property>
+      <obj_property name="ObjectShortName">drv_low</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/leds" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">leds[7:0]</obj_property>
+      <obj_property name="ObjectShortName">leds[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/td1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">td1[17:0]</obj_property>
+      <obj_property name="ObjectShortName">td1[17:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/t" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">t</obj_property>
+      <obj_property name="ObjectShortName">t</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/s" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">s</obj_property>
+      <obj_property name="ObjectShortName">s</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/start_cond" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">start_cond</obj_property>
+      <obj_property name="ObjectShortName">start_cond</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/stop_cond" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">stop_cond</obj_property>
+      <obj_property name="ObjectShortName">stop_cond</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/addr_rx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_rx[6:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_rx[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/is_my_addr" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">is_my_addr</obj_property>
+      <obj_property name="ObjectShortName">is_my_addr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/state_reg" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state_reg</obj_property>
+      <obj_property name="ObjectShortName">state_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/rx_sample" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_sample</obj_property>
+      <obj_property name="ObjectShortName">rx_sample</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/sclk_begin" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sclk_begin</obj_property>
+      <obj_property name="ObjectShortName">sclk_begin</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/sclk_end" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sclk_end</obj_property>
+      <obj_property name="ObjectShortName">sclk_end</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/bit_ndx" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">bit_ndx</obj_property>
+      <obj_property name="ObjectShortName">bit_ndx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/dt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/dr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dr[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/byte_mark" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">byte_mark</obj_property>
+      <obj_property name="ObjectShortName">byte_mark</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/i2c1/rw" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rw</obj_property>
+      <obj_property name="ObjectShortName">rw</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mojo_top_testbench/uut/lc1/state_reg" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state_reg</obj_property>
+      <obj_property name="ObjectShortName">state_reg</obj_property>
+   </wvobject>
+</wave_config>

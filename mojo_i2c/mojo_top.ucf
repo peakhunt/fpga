@@ -1,0 +1,35 @@
+NET "clk_50" LOC = P56;
+NET "clk_50" IOSTANDARD = LVTTL;
+
+NET "rst_n" LOC = P38;
+NET "rst_n" IOSTANDARD = LVTTL;
+
+NET "leds[0]" LOC = P134;
+NET "leds[0]" IOSTANDARD = LVTTL;
+NET "leds[1]" LOC = P133;
+NET "leds[1]" IOSTANDARD = LVTTL;
+NET "leds[2]" LOC = P132;
+NET "leds[2]" IOSTANDARD = LVTTL;
+NET "leds[3]" LOC = P131;
+NET "leds[3]" IOSTANDARD = LVTTL;
+NET "leds[4]" LOC = P127;
+NET "leds[4]" IOSTANDARD = LVTTL;
+NET "leds[5]" LOC = P126;
+NET "leds[5]" IOSTANDARD = LVTTL;
+NET "leds[6]" LOC = P124;
+NET "leds[6]" IOSTANDARD = LVTTL;
+NET "leds[7]" LOC = P123;
+NET "leds[7]" IOSTANDARD = LVTTL;
+
+NET "i2c_scl" LOC = P138;
+NET "i2c_scl" IOSTANDARD = LVTTL;
+NET "i2c_sda" LOC = P140;
+NET "i2c_sda" IOSTANDARD = LVTTL;
+
+NET "clk_50" TNM_NET = "clk_50";
+TIMESPEC TS_clk_50 = PERIOD "clk_50" 50 MHz HIGH 50 %;
+
+# PlanAhead Generated IO constraints 
+
+# NET "i2c_sda" SLEW = FAST;
+# NET "i2c_sda" DRIVE = 4;

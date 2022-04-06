@@ -36,5 +36,5 @@ def do_test():
       if do_sleep:
         time.sleep(sleep_intv)
 
-      iter = iter + 1
-      led.toggle()
+    iter = iter + 1
+    led.toggle()

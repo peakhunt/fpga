@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2022-03-31T15:36:11</DateModified>
+  <DateModified>2022-04-07T17:14:14</DateModified>
   <ModuleName>mojo_top</ModuleName>
   <SummaryTimeStamp>2022-03-30T17:55:55</SummaryTimeStamp>
   <SavedFilePath>/home/hawk/sandbox/fpga/mojo_i2c/iseconfig/mojo_top.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/hawk/sandbox/fpga/mojo_i2c</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>/home/hawk/sandbox/fpga/mojo_i2c/</ImplementationReportsDirectory>
   <DateInitialized>2022-03-30T16:44:09</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

@@ -1,204 +1,183 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    09:30:55 03/16/2022 
+-- Design Name: 
+-- Module Name:    spi_slave - Behavioral 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
 
 entity spi_slave is
+generic
+(
+  DATA_WIDTH: integer := 8
+);
+
 port
 (
-  clk, reset: in std_logic;
-  s_ss, s_clk, s_mosi: in std_logic;
-  s_miso: out std_logic;
-  spi_rx: out std_logic_vector(7 downto 0);
-  spi_tx: in std_logic_vector(7 downto 0);
-  byte_rdy_tick: out std_logic;
-  spi_busy: out std_logic
+  -- main system clock for synchronous operation
+  clk: in std_logic;
+
+  -- module reset : active high
+  reset: in std_logic;
+
+  -- SPI slave wires
+  miso: out std_logic;
+  mosi: in std_logic;
+  sclk: in std_logic;
+  cs_n: in std_logic;
+
+  -- data to tx for spi slave
+  dt: in std_logic_vector(DATA_WIDTH - 1 downto 0);
+
+  -- data rxed by spi slave
+  dr: out std_logic_vector(DATA_WIDTH - 1 downto 0);
+
+  -- rx data ready signal
+  dready: out std_logic;
+
+  -- SPI transaction active
+  active: out std_logic
 );
 end spi_slave;
 
-architecture arch of spi_slave is
-  type state_type is (idle, data);
+architecture Behavioral of spi_slave is
 
-  signal state_reg, state_next: state_type;
-  signal n_reg, n_next: unsigned(2 downto 0);             -- counter for number of data rxed
-  signal b_reg, b_next: std_logic_vector(7 downto 0);     -- SPI rx data buffer
-  signal t_reg, t_next: std_logic;                        -- SPI tx data
-  signal br_reg, br_next: std_logic;
+-- to manage internal state machine
+signal bit_ndx, bit_ndx_next: integer range 0 to DATA_WIDTH - 1;
+signal data_received, data_received_next: std_logic_vector(DATA_WIDTH - 1 downto 0);
+signal data_ready, data_ready_next: std_logic;
 
-  signal sclk_rising: std_logic; 
-  signal sclk_falling: std_logic; 
+signal sclk_sample: std_logic_vector(1 downto 0);
+
+signal sclk_falling, sclk_rising: std_logic;
+
+signal s_mosi: std_logic;
+signal spi_active: std_logic;
+
+signal tx_bit, tx_bit_next: std_logic;
+
 begin
-  --============================================================================
-  -- SPI clock rising/falling edge detector
-  --============================================================================
-  spi_clk_detector: entity work.edge_detector(arch)
-  port map
-  (
-    clk => clk,
-    reset => reset,
-    level => s_clk,
-    rising => sclk_rising,
-    falling => sclk_falling
-  );
-
-  --============================================================================
-  -- FSMD state & data registers
-  --============================================================================
+  ----------------------------------------
+  -- synchronous state logic & signal sampling
+  ----------------------------------------
   process(clk, reset)
   begin
-    if reset = '1'
-    then
-      state_reg <= idle;
-      n_reg <= (others => '0');
-      b_reg <= (others => '0');
-      t_reg <= '0';
-      br_reg <= '0';
-    elsif rising_edge(clk)
-    then
-      state_reg <= state_next;
-      n_reg <= n_next;
-      b_reg <= b_next;
-      t_reg <= t_next;
-      br_reg <= br_next;
+    if reset = '1' then
+      bit_ndx <= 0;
+      data_received <= (others => '0');
+      data_ready <= '0';
+
+      s_mosi <= '0';
+      spi_active <= '0';
+      sclk_sample <= "00";
+
+      tx_bit <= '0';
+    elsif rising_edge(clk) then
+      bit_ndx <= bit_ndx_next;
+      data_received <= data_received_next;
+
+      data_ready <= data_ready_next;
+
+      s_mosi <= mosi;
+      spi_active <= not cs_n;
+      sclk_sample <= sclk_sample(0) & sclk;
+
+      tx_bit <= tx_bit_next;
     end if;
   end process;
 
-  --============================================================================
-  -- next-state logic & data path functional units/routing
-  --============================================================================
-  process(state_reg, n_reg, b_reg, t_reg, s_ss, sclk_rising, sclk_falling, s_mosi, spi_tx)
+  sclk_falling <= '1' when sclk_sample = "10" else
+                  '0';
+
+  sclk_rising <= '1' when sclk_sample = "01" else
+                 '0';
+
+  ----------------------------------------
+  -- bit ndx SM
+  ----------------------------------------
+  process(spi_active, sclk_falling, bit_ndx)
   begin
-    state_next <= state_reg;
-    n_next <= n_reg;
-    b_next <= b_reg;
-    t_next <= t_reg;
-
-    br_next <= '0';
-
-    case state_reg is
-      when idle =>
-        if s_ss = '0'
-        then
-          state_next <= data;
-          n_next <= (others => '0');
-          t_next <= '0';
-        end if;
-
-      when data =>
-        if s_ss = '1'
-        then
-          state_next <= idle;
-        else
-          if sclk_rising = '1'
-          then
-            -- TX data
-            t_next <= spi_tx(7 - to_integer(n_reg));
-          elsif sclk_falling = '1'
-          then
-            -- sample rx data
-            b_next <= b_reg(6 downto 0) & s_mosi;
-            if n_reg = 7
-            then
-              n_next <= (others => '0');
-              br_next <= '1';
-            else
-              n_next <= n_reg + 1;
-            end if;
-          end if;
-        end if;
-    end case;
+    bit_ndx_next <= bit_ndx;
+    if spi_active = '0' then
+      bit_ndx_next <= 0;
+    elsif sclk_falling = '1' then
+      if bit_ndx = (DATA_WIDTH - 1) then
+        bit_ndx_next <= 0;
+      else
+        bit_ndx_next <= bit_ndx + 1;
+      end if;
+    end if;
   end process;
 
-  spi_rx <= b_reg;
-  s_miso <= t_reg when state_reg /= idle else
-            'Z';
-  spi_busy <= '1' when state_reg /= idle else
-              '0';
-  byte_rdy_tick <= br_reg;
-end arch;
-
---============================================================================
--- testbench
---============================================================================
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity spi_slave_testbench is
-end spi_slave_testbench;
-
-architecture tb_arch of spi_slave_testbench is
-  constant T: time := 20ns;
-  constant T2: time := 40ns;
-  constant TX_PATTERN: std_logic_vector(15 downto 0) := "1010101010101010";
-
-  signal clk: std_logic;
-  signal reset: std_logic;
-  signal s_ss: std_logic;
-  signal s_clk: std_logic;
-  signal s_mosi: std_logic;
-  signal s_miso: std_logic;
-  signal spi_rx: std_logic_vector(7 downto 0);
-  signal spi_tx: std_logic_vector(7 downto 0);
-  signal bready: std_logic;
-  signal busy: std_logic;
-begin
-  -- instantiate the circuit under test
-  uut: entity work.spi_slave(arch)
-  port map
-  (
-    clk => clk,
-    reset => reset,
-    s_ss => s_ss,
-    s_clk => s_clk,
-    s_mosi => s_mosi,
-    s_miso => s_miso,
-    spi_rx => spi_rx,
-    spi_tx => spi_tx,
-    byte_rdy_tick => bready,
-    spi_busy => busy
-  );
-
-  -- clock. 20ns running forever
-  process
+  ----------------------------------------
+  -- data ready SM
+  ----------------------------------------
+  process(spi_active, sclk_falling, bit_ndx, data_ready)
   begin
-    clk <= '0';
-    wait for T/2;
-    clk <= '1';
-    wait for T/2;
+    data_ready_next <= '0';
+    if spi_active = '1' and sclk_falling = '1' and bit_ndx = (DATA_WIDTH-1) then
+      data_ready_next <= '1';
+    end if;
   end process;
 
-  -- reset asserted for T*3
-  reset <= '1', '0' after T*3;
-
-  process
+  ----------------------------------------
+  -- rx data SM
+  ----------------------------------------
+  process(spi_active, sclk_falling, data_received, s_mosi)
   begin
-    s_ss <= '1';
-    s_clk <= '0';
-    s_mosi <= '0';
-
-    spi_tx <= (others => '0');
-
-    wait until falling_edge(reset);
-
-    -- chip select
-    s_ss <= '0';
-    wait for T2;
-
-    for i in 0 to 15 loop
-      -- clock rising
-      s_clk <= '1';
-      -- TX
-      s_mosi <= TX_PATTERN(15 - i);
-      wait for T2;
-
-      -- clock falling
-      s_clk <= '0';
-      wait for T2;
-
-    end loop;
-
-    -- chip unselect
-    wait for T2;
-    s_ss <= '1';
-    wait for T2;
+    data_received_next <= data_received;
+    if spi_active = '0' then
+      data_received_next <= (others => '0');
+    elsif spi_active = '1' and sclk_falling = '1' then
+      data_received_next <= data_received(DATA_WIDTH - 2 downto 0) & s_mosi;
+    end if;
   end process;
-end tb_arch;
+
+  ----------------------------------------
+  -- tx data SM
+  ----------------------------------------
+  process(sclk_rising, bit_ndx, dt, tx_bit)
+  begin
+    tx_bit_next <= tx_bit;
+    if sclk_rising = '1' then
+      tx_bit_next <= dt(DATA_WIDTH - 1 - bit_ndx);
+    end if;
+  end process;
+
+  ---------------------------------------------------------------------
+  -- module outputs
+  --
+  ---------------------------------------------------------------------
+  -- rx byte ready
+  dready <= data_ready;
+
+  -- SPI transaction active
+  active <= spi_active;
+
+  -- data received
+  dr <= data_received;
+
+  -- tx data: MSB first
+  miso <= tx_bit when spi_active = '1' else
+          'Z';
+end Behavioral;

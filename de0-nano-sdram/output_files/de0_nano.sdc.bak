@@ -1,0 +1,27 @@
+# ==============================================================================
+# 1. 기본 클럭 정의 (보드의 50MHz 크리스탈 선언)
+# ==============================================================================
+create_clock -period 20.000 -name clk_50m [get_ports CLOCK_50]
+
+# ==============================================================================
+# 2. 외부 SDRAM 칩으로 나가는 가상 클럭 정의 (타이밍 분석 기준점)
+# ==============================================================================
+create_generated_clock -source [get_ports CLOCK_50] -name sdram_clk_pin [get_ports DRAM_CLK]
+
+# 자동으로 타겟 장치 내부의 내부 클럭 딜레이 분석 적용
+derive_pll_clocks
+derive_clock_uncertainty
+
+# ==============================================================================
+# 3. 보드 라우팅 및 칩 타이밍 마진 강제 설정 (IS42S16160G 규격 기준 계산값)
+# ==============================================================================
+# SDRAM 데이터 사양: tAC(Access Time)=5.4ns, tOH(Hold Time)=2.7ns
+# 보드 트레이스 스큐(PCB Routing Skew) 오차 고려 반영
+
+# 외부 입력 지연 (SDRAM -> FPGA 데이터 들어올 때 보정치)
+set_input_delay -max -clock sdram_clk_pin 6.0 [get_ports {DRAM_DQ[*]}]
+set_input_delay -min -clock sdram_clk_pin 2.5 [get_ports {DRAM_DQ[*]}]
+
+# 외부 출력 지연 (FPGA -> SDRAM 데이터 나갈 때 보정치)
+set_output_delay -max -clock sdram_clk_pin 1.5 [get_ports {DRAM_DQ[*] DRAM_ADDR[*] DRAM_BA[*] DRAM_CAS_N DRAM_RAS_N DRAM_WE_N DRAM_CS_N DRAM_CKE DRAM_UDQM DRAM_LDQM}]
+set_output_delay -min -clock sdram_clk_pin -0.8 [get_ports {DRAM_DQ[*] DRAM_ADDR[*] DRAM_BA[*] DRAM_CAS_N DRAM_RAS_N DRAM_WE_N DRAM_CS_N DRAM_CKE DRAM_UDQM DRAM_LDQM}]

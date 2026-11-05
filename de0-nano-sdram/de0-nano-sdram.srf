@@ -1,0 +1,15 @@
+{ "" "" "" "Current license file does not support incremental compilation. The Quartus Prime software removes all the user-specified design partitions in the design automatically." {  } {  } 0 138067 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"LED\[4\]\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"LED\[5\]\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"LED\[6\]\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"LED\[7\]\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"DRAM_U_DQM\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"DRAM_D_LQM\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"DRAM_CS_N\" is stuck at GND" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Pin \"DRAM_CKE\" is stuck at VCC" {  } {  } 0 13410 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature." {  } {  } 0 292013 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "No output dependent on input pin \"KEY\[1\]\"" {  } {  } 0 15610 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "19 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing Cyclone IV E Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems." {  } {  } 0 169177 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Output pins are stuck at VCC or GND" {  } {  } 0 13024 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "Design contains 1 input pin(s) that do not drive logic" {  } {  } 0 21074 "" 0 0 "Design Software" 0 -1 0 ""}
+{ "" "" "" "*" {  } {  } 0 15714 "" 0 0 "Design Software" 0 -1 0 ""}

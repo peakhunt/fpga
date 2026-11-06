@@ -29,8 +29,8 @@ architecture rtl of de0_nano_top is
         port (
             areset   : in  std_logic := '0';
             inclk0   : in  std_logic := '0';
-            c0       : out std_logic;        -- 100MHz, Phase 0 (FPGA 내부 구동용)
-            c1       : out std_logic;        -- 100MHz, Phase -3ns (SDRAM 외부 핀 출력용)
+            c0       : out std_logic;
+            c1       : out std_logic;
             locked   : out std_logic
         );
     end component;
